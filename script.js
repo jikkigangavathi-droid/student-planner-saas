@@ -19,16 +19,17 @@ function friendlyTime(time) {
   const [h,m] = time.split(':').map(Number);
   return `${(h % 12) || 12}:${String(m).padStart(2,'0')} ${h >= 12 ? 'PM' : 'AM'}`;
 }
-function addTask(name, time) {
-  tasks.unshift({id: Date.now() + Math.random(), name: name.trim(), time, done: false});
+function addTask(subject, topic, name, time) {
+  tasks.unshift({id: Date.now() + Math.random(), subject: subject.trim(), topic: topic.trim(), name: name.trim(), time, done: false});
   save(); render();
 }
 function taskMarkup(task) {
-  return `<div class="task-row ${task.done ? 'completed' : ''}">
-    <button class="task-check" data-action="toggle" data-id="${task.id}" aria-label="${task.done ? 'Mark incomplete' : 'Complete task'}">${task.done ? '✓' : ''}</button>
-    <div class="task-text"><strong>${escapeHTML(task.name)}</strong><small>◷ ${escapeHTML(friendlyTime(task.time))}</small></div>
-    <button class="delete-button" data-action="delete" data-id="${task.id}" aria-label="Delete task">×</button>
-  </div>`;
+  const status = task.done ? 'Completed' : 'Not completed';
+  return `<article class="task-row task-card ${task.done ? 'completed' : ''}">
+    <div class="task-card-top"><span class="subject-chip">${escapeHTML(task.subject || 'General')}</span><span class="work-status ${task.done ? 'status-done' : 'status-pending'}">${status}</span></div>
+    <div class="task-text"><strong class="topic-label">Topic: ${escapeHTML(task.topic || task.name)}</strong><span class="work-label">Work: ${escapeHTML(task.name)}</span><small>◷ ${escapeHTML(friendlyTime(task.time))}</small></div>
+    <div class="task-card-actions"><button class="task-check" data-action="toggle" data-id="${task.id}" aria-label="${task.done ? 'Mark incomplete' : 'Mark completed'}">${task.done ? '✓' : ''}</button><span class="action-hint">Mark ${task.done ? 'not completed' : 'completed'}</span><button class="delete-button" data-action="delete" data-id="${task.id}" aria-label="Delete task">×</button></div>
+  </article>`;
 }
 function renderTasks() {
   const done = tasks.filter(t => t.done).length, total = tasks.length, todo = total - done;
@@ -62,17 +63,19 @@ function showView(view) {
 }
 document.querySelectorAll('.nav-item').forEach(button => button.addEventListener('click', () => showView(button.dataset.view)));
 document.getElementById('go-tasks').addEventListener('click', () => showView('tasks'));
-function connectTaskForm(formId, inputId, timeId) {
+function connectTaskForm(formId, subjectId, topicId, inputId, timeId) {
   document.getElementById(formId).addEventListener('submit', event => {
     event.preventDefault();
+    const subject = document.getElementById(subjectId);
+    const topic = document.getElementById(topicId);
     const input = document.getElementById(inputId);
-    if (!input.value.trim()) return;
-    addTask(input.value, document.getElementById(timeId).value);
-    input.value = ''; document.getElementById(timeId).value = '';
+    if (!subject.value.trim() || !topic.value.trim() || !input.value.trim()) return;
+    addTask(subject.value, topic.value, input.value, document.getElementById(timeId).value);
+    subject.value = ''; topic.value = ''; input.value = ''; document.getElementById(timeId).value = '';
   });
 }
-connectTaskForm('task-form', 'task-input', 'task-time');
-connectTaskForm('task-form-secondary', 'task-input-secondary', 'task-time-secondary');
+connectTaskForm('task-form', 'task-subject', 'task-topic', 'task-input', 'task-time');
+connectTaskForm('task-form-secondary', 'task-subject-secondary', 'task-topic-secondary', 'task-input-secondary', 'task-time-secondary');
 document.addEventListener('click', event => {
   const action = event.target.closest('[data-action]');
   if (action) {

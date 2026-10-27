@@ -9,3 +9,23 @@ body{background-color:#fff0f7;background-image:url('school-background.png');back
 .stat-card,.panel,.profile{background:rgba(255,255,255,.86);backdrop-filter:blur(7px)}
 .side-note,.quote-card,.schedule-intro{background:rgba(251,246,255,.88)}
 @media(max-width:650px){body{background-attachment:scroll}.sidebar{background:rgba(255,255,255,.93)}}
+
+/* Subject/topic/completion cards and Lucida handwriting typography */
+body, button, input, select, textarea { font-family: "Lucida Handwriting", "Lucida Sans", "Lucida Grande", cursive; }
+.task-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+.task-form input[type="time"] { width:100%; }
+.task-form .primary-button { min-height:39px; }
+.task-card { display:block; padding:14px; margin:9px 0; border:1px solid rgba(231,180,201,.75); border-radius:15px; background:rgba(255,255,255,.92); box-shadow:0 5px 16px rgba(90,54,90,.06); }
+.task-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+.subject-chip { display:inline-block; background:#f1eaff; color:#8066b6; padding:6px 10px; border-radius:9px; font-size:11px; font-weight:700; overflow-wrap:anywhere; }
+.work-status { display:inline-block; padding:6px 9px; border-radius:9px; font-size:10px; font-weight:700; }
+.status-pending { background:#fff0dc; color:#a66c24; }
+.status-done { background:#e5f7e9; color:#43865a; }
+.task-card .task-text { margin-bottom:10px; }
+.task-card .topic-label { font-size:12px; line-height:1.6; text-decoration:none !important; color:var(--ink) !important; }
+.task-card .work-label { display:block; font-size:11px; line-height:1.6; margin-top:5px; overflow-wrap:anywhere; }
+.task-card .task-text small { display:block; margin-top:7px; }
+.task-card.completed .work-label { text-decoration:line-through; color:#a99eae; }
+.task-card-actions { display:flex; align-items:center; gap:8px; border-top:1px solid #f4edf4; padding-top:9px; }
+.action-hint { font-size:10px; color:#988b9f; flex:1; }
+@media(max-width:650px) { .task-form { grid-template-columns:1fr; } .task-form input[type="time"] { width:100%; } }
