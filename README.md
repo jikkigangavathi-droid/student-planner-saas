@@ -25,3 +25,6 @@ Expected URL: `https://YOUR-USERNAME.github.io/student-planner-saas/`
 
 ## Note
 This is a front-end demo, not a complete cloud SaaS product. Data is stored only in the current browser. A real multi-user SaaS version needs a backend, database, authentication, and secure hosting.
+
+## School background
+The app includes `school-background.png`, a pastel stationery flat-lay used as the page background. Keep this image in the same folder as `index.html` and `style.css` when uploading to GitHub Pages.
