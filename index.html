@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyBloom | Student Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">✿</span><span>StudyBloom</span></div>
+      <p class="side-label">WORKSPACE</p>
+      <button class="nav-item active" data-view="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-item" data-view="tasks">☑ <span>My Tasks</span></button>
+      <button class="nav-item" data-view="schedule">▦ <span>Study Schedule</span></button>
+      <div class="side-note"><div class="note-icon">✦</div><strong>Small steps count!</strong><p>Keep showing up for your goals. You're doing great.</p></div>
+      <div class="sidebar-footer">Made for your bright future ♡</div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow" id="today-label">YOUR PERSONAL STUDY SPACE</p><h1 id="page-title">Good morning! <span>✧</span></h1><p class="subtitle">Let's make today a little more productive.</p></div>
+        <div class="profile"><div class="avatar">☺</div><div><strong>Student</strong><small>My planner</small></div></div>
+      </header>
+      <section class="view active-view" id="dashboard-view">
+        <div class="welcome-card"><div><span class="pill">YOUR DAILY DOSE OF PROGRESS</span><h2>A fresh day,<br>fresh possibilities. <span>🌷</span></h2><p>Plan your time, focus on what matters, and celebrate every win.</p></div><div class="welcome-art" aria-hidden="true"><div class="sun">☀</div><div class="book book-one"></div><div class="book book-two"></div><div class="plant">🌱</div></div></div>
+        <div class="section-heading"><div><h2>Your overview</h2><p>A little progress goes a long way.</p></div><button class="text-button" id="go-tasks">View all tasks →</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon pink">☑</div><p>Total tasks</p><strong id="total-count">0</strong><small>Things on your list</small></article>
+          <article class="stat-card"><div class="stat-icon purple">✧</div><p>Completed</p><strong id="done-count">0</strong><small>Look at you go!</small></article>
+          <article class="stat-card"><div class="stat-icon peach">◷</div><p>To do</p><strong id="todo-count">0</strong><small>One step at a time</small></article>
+          <article class="stat-card"><div class="stat-icon green">♡</div><p>Progress</p><strong id="progress-count">0%</strong><small>Keep blooming</small></article>
+        </div>
+        <div class="content-grid">
+          <section class="panel task-panel"><div class="panel-heading"><div><h2>Today's tasks</h2><p>Your next little wins</p></div><span class="mini-badge" id="today-task-count">0 tasks</span></div>
+            <form id="task-form" class="task-form"><input id="task-input" type="text" placeholder="Add a task, e.g. Revise biology..." maxlength="100" required><input id="task-time" type="time" aria-label="Task time"><button type="submit" class="primary-button">＋ Add</button></form>
+            <div id="task-list" class="task-list"></div><div id="empty-state" class="empty-state"><span>🌼</span><strong>Your list is a blank canvas!</strong><p>Add your first task to get started.</p></div>
+          </section>
+          <section class="panel focus-panel"><div class="panel-heading"><div><h2>Study progress</h2><p>Every effort matters</p></div><span class="flower">✿</span></div><div class="progress-ring" id="progress-ring"><div><strong id="ring-percent">0%</strong><small>completed</small></div></div><p class="focus-message" id="focus-message">Start with one small task today.</p><div class="quote-card">“You don't have to be perfect. You just have to begin.” <span>— A little reminder ♡</span></div></section>
+        </div>
+      </section>
+      <section class="view" id="tasks-view"><div class="section-heading page-section-heading"><div><h2>My tasks</h2><p>All your tasks, in one happy place.</p></div></div><section class="panel">
+        <form id="task-form-secondary" class="task-form"><input id="task-input-secondary" type="text" placeholder="What do you need to do?" maxlength="100" required><input id="task-time-secondary" type="time" aria-label="Task time"><button type="submit" class="primary-button">＋ Add task</button></form>
+        <div class="filter-row"><button class="filter-button active" data-filter="all">All tasks</button><button class="filter-button" data-filter="active">To do</button><button class="filter-button" data-filter="done">Completed</button></div><div id="all-task-list" class="task-list"></div><div id="all-empty-state" class="empty-state"><span>📝</span><strong>No tasks to show</strong><p>Add a task above and it will appear here.</p></div>
+      </section></section>
+      <section class="view" id="schedule-view"><div class="section-heading page-section-heading"><div><h2>Study schedule</h2><p>Give your study time a little structure.</p></div></div><section class="panel schedule-panel">
+        <div class="schedule-intro"><span>📚</span><div><h3>Build your study rhythm</h3><p>Add study blocks to plan your day. Your schedule stays saved in this browser.</p></div></div>
+        <form id="schedule-form" class="schedule-form"><input id="schedule-subject" type="text" placeholder="Subject or activity" maxlength="70" required><input id="schedule-time" type="time" aria-label="Study time" required><button class="primary-button" type="submit">＋ Add block</button></form>
+        <div id="schedule-list" class="schedule-list"></div><div id="schedule-empty" class="empty-state"><span>🗓️</span><strong>Your schedule starts here</strong><p>Add a subject and time for your next study session.</p></div>
+      </section></section>
+      <footer class="main-footer">Made with care for your student journey <span>♡</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
